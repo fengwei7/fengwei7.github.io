@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="zh-CN" theme="default"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Weii"><title>claude.md解密 · Weii's Blog</title><meta name="description" content="claude.md解密一、为什么用Markdown存Agent记忆MarkDown是程序员间通用的文档格式，最早OpenAI的程序员将其定为LLM的输出规范Markdown是人+Agent都能读写的显式长期记忆，无数据库&amp;#x2F;向量引擎依赖，核心优势：
+
+透明可审计：打开即看记忆内容，无黑盒
+持"><meta name="keywords" content="Blog,博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon1.webp"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"><script src="/js_complied/bundle.js"></script><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script><meta name="generator" content="Hexo 8.1.2"></head><body> <main-outlet><div class="page-top animated"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog">博客</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/splits">碎片</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="nav_right_btn"><li class="btn-toggle-more"><i class="fa fa-ellipsis"></i></li><li class="btn-go-back"><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li class="btn-search"><a class="fa fa-search" onclick="Anatolo.search.openWindow();"></a></li><li class="btn-toggle-theme"><a class="far fa-sun" onclick="Anatolo.darkLightToggle();"></a></li></div><div class="avatar"><img src="/images/favicon1.webp"></div></div></div><div class="sidebar animated"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/favicon1.webp" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Weii's Blog</a></h3><div class="description"><p>东边日出西边雨，道是无晴却有晴</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/fengwei7"><i class="fab fa-github"></i></a></li><li><a href="mailto:xialuobingo@gmail.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://instagram.com/xialuobingo"><i class="fab fa-instagram"></i></a></li><li><a target="_blank" rel="noopener" href="https://t.me/xialuobingo"><i class="fab fa-telegram"></i></a></li></ul></div></div><div class="footer"><div class="p"><span>全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Weii</span></div><div class="by_farbox"><span>Powered by</span><a href="https://hexo.io/zh-cn/" target="_blank"> Hexo</a><span> &</span><a href="https://github.com/Lhcfl/hexo-theme-anatolo" target="_blank"> Anatolo</a></div><div class="beian"></div></div></div><div class="main animated fadeInDown"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated"><div class="post-title"><h3><a>claude.md解密</a></h3></div><div class="post-content"><p><h1 id="claude-md解密"><a href="#claude-md解密" class="headerlink" title="claude.md解密"></a>claude.md解密</h1><h2 id="一、为什么用Markdown存Agent记忆"><a href="#一、为什么用Markdown存Agent记忆" class="headerlink" title="一、为什么用Markdown存Agent记忆"></a>一、为什么用Markdown存Agent记忆</h2><p>MarkDown是程序员间通用的文档格式，最早OpenAI的程序员将其定为LLM的输出规范<br>Markdown是<strong>人+Agent都能读写</strong>的显式长期记忆，无数据库&#x2F;向量引擎依赖，核心优势：</p>
+<ol>
+<li><strong>透明可审计</strong>：打开即看记忆内容，无黑盒</li>
+<li><strong>持久化</strong>：存磁盘，不随进程&#x2F;机器变化</li>
+<li><strong>版本可控</strong>：Git管理，可回滚、分支、评审</li>
+<li><strong>零迁移</strong>：标准格式，换模型&#x2F;框架仅迁文件</li>
+<li><strong>低成本</strong>：本地无额外运维与费用</li>
+</ol>
+<hr>
+<h2 id="二、Claude-Code双轨记忆机制"><a href="#二、Claude-Code双轨记忆机制" class="headerlink" title="二、Claude Code双轨记忆机制"></a>二、Claude Code双轨记忆机制</h2><p>采用<strong>CLAUDE.md（人工）+ Auto Memory（自动）</strong> 双轨：</p>
+<h3 id="1-CLAUDE-md（人工编写）"><a href="#1-CLAUDE-md（人工编写）" class="headerlink" title="1. CLAUDE.md（人工编写）"></a>1. CLAUDE.md（人工编写）</h3><ul>
+<li>定位：AI的<strong>项目入职文档</strong></li>
+<li>官方限制：<strong>≤200行</strong>，超行降低指令遵守率</li>
+</ul>
+<h4 id="该写内容"><a href="#该写内容" class="headerlink" title="该写内容"></a>该写内容</h4><ul>
+<li>技术栈与版本信息</li>
+<li>常用构建&#x2F;测试&#x2F;启动命令（放代码块）</li>
+<li>架构决策+背后原因</li>
+<li>团队约定、项目特有坑点</li>
+</ul>
+<h4 id="不该写内容"><a href="#不该写内容" class="headerlink" title="不该写内容"></a>不该写内容</h4><ul>
+<li>代码风格规则（交格式化工具）</li>
+<li>语言&#x2F;框架默认行为</li>
+<li>大段参考文档（给链接即可）</li>
+</ul>
+<h4 id="高效写法技巧"><a href="#高效写法技巧" class="headerlink" title="高效写法技巧"></a>高效写法技巧</h4><ul>
+<li>规则<strong>具体可验证</strong>，避免模糊表述</li>
+<li>禁令配<strong>替代方案</strong>，不单纯禁止</li>
+<li>慎用<code>IMPORTANT:</code>标记，避免滥用失效</li>
+<li>用通用标题（Commands&#x2F;Conventions等）</li>
+</ul>
+<h3 id="2-Auto-Memory（自动积累）"><a href="#2-Auto-Memory（自动积累）" class="headerlink" title="2. Auto Memory（自动积累）"></a>2. Auto Memory（自动积累）</h3><ul>
+<li>存储路径：<code>~/.claude/projects/&lt;project&gt;/memory/</code></li>
+<li>入口文件：<code>MEMORY.md</code></li>
+<li>限制：仅加载<strong>前200行&#x2F;25KB</strong>，超量不读</li>
+<li>问题：20-30会话后笔记质量可能下降</li>
+<li>禁用：环境变量<code>CLAUDE_CODE_DISABLE_AUTO_MEMORY=1</code></li>
+</ul>
+<hr>
+<h2 id="三、CLAUDE-md四层加载规则"><a href="#三、CLAUDE-md四层加载规则" class="headerlink" title="三、CLAUDE.md四层加载规则"></a>三、CLAUDE.md四层加载规则</h2><table>
+<thead>
+<tr>
+<th align="left">层级</th>
+<th align="left">路径</th>
+<th align="left">作用范围</th>
+<th align="left">优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">组织级</td>
+<td align="left"><code>/etc/claude-code/CLAUDE.md</code></td>
+<td align="left">所有用户</td>
+<td align="left">最低</td>
+</tr>
+<tr>
+<td align="left">用户级</td>
+<td align="left"><code>~/.claude/CLAUDE.md</code></td>
+<td align="left">个人所有项目</td>
+<td align="left">中</td>
+</tr>
+<tr>
+<td align="left">项目级</td>
+<td align="left"><code>./CLAUDE.md</code>&#x2F;<code>.claude/CLAUDE.md</code></td>
+<td align="left">团队共享</td>
+<td align="left">高</td>
+</tr>
+<tr>
+<td align="left">本地级</td>
+<td align="left"><code>CLAUDE.local.md</code></td>
+<td align="left">个人当前项目</td>
+<td align="left">最高</td>
+</tr>
+</tbody></table>
+<ul>
+<li>加载规则：<strong>从工作目录向上查找</strong>，近目录优先级更高</li>
+<li>本地级：需加入<code>.gitignore</code>，不提交仓库</li>
+</ul>
+<hr>
+<h2 id="四、分层管理与引用规则"><a href="#四、分层管理与引用规则" class="headerlink" title="四、分层管理与引用规则"></a>四、分层管理与引用规则</h2><ol>
+<li><strong>@引用</strong><ul>
+<li>格式：<code>@path/to/file</code>，递归≤5层</li>
+<li>特点：<strong>启动全量加载</strong>，不减少上下文消耗</li>
+</ul>
+</li>
+<li><strong>path-scoped rules</strong><ul>
+<li>路径：<code>.claude/rules/</code></li>
+<li>特点：<strong>按需加载</strong>，仅匹配路径时生效，适合细粒度规则</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="五、CLAUDE-md维护策略"><a href="#五、CLAUDE-md维护策略" class="headerlink" title="五、CLAUDE.md维护策略"></a>五、CLAUDE.md维护策略</h2><ol>
+<li><strong>添加慢</strong>：仅当Claude犯错且规则能防错时添加</li>
+<li><strong>删除快</strong>：无效&#x2F;无影响规则立即移除</li>
+<li><strong>错误驱动</strong>：纠错后同步更新记忆</li>
+<li><strong>预警信号</strong><ul>
+<li>反复道歉：规则表述问题</li>
+<li>反复违反：文件过长，需精简</li>
+</ul>
+</li>
+<li><strong>版本管理</strong>：Git提交+PR评审，可回滚</li>
+</ol>
+<hr>
+<h2 id="六、Markdown记忆-vs-传统记忆方案对比"><a href="#六、Markdown记忆-vs-传统记忆方案对比" class="headerlink" title="六、Markdown记忆 vs 传统记忆方案对比"></a>六、Markdown记忆 vs 传统记忆方案对比</h2><table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">Markdown记忆</th>
+<th align="left">向量库&#x2F;RAG</th>
+<th align="left">数据库型框架</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">检索</td>
+<td align="left">全量注入，无检索</td>
+<td align="left">语义检索，高精度</td>
+<td align="left">混合策略</td>
+</tr>
+<tr>
+<td align="left">上下文</td>
+<td align="left">随文件大小增加</td>
+<td align="left">按需加载，高效</td>
+<td align="left">按需加载，高效</td>
+</tr>
+<tr>
+<td align="left">调试</td>
+<td align="left">极佳，直接改文件</td>
+<td align="left">中等，需工具</td>
+<td align="left">复杂</td>
+</tr>
+<tr>
+<td align="left">成本</td>
+<td align="left">极低</td>
+<td align="left">高，需运维</td>
+<td align="left">极高</td>
+</tr>
+<tr>
+<td align="left">版本</td>
+<td align="left">原生Git</td>
+<td align="left">需额外同步</td>
+<td align="left">需额外同步</td>
+</tr>
+<tr>
+<td align="left">场景</td>
+<td align="left">规范、偏好、踩坑</td>
+<td align="left">海量文本检索</td>
+<td align="left">复杂多源记忆</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="七、CLAUDE-md不适合存储内容"><a href="#七、CLAUDE-md不适合存储内容" class="headerlink" title="七、CLAUDE.md不适合存储内容"></a>七、CLAUDE.md不适合存储内容</h2><ul>
+<li>大段日志、完整对话</li>
+<li>敏感密钥、Token、账号</li>
+<li>高频运行时数据</li>
+<li>可实时查询的动态信息</li>
+</ul>
+</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-05-25</span><a class="tag" href="/categories/RD/" title="RD">RD </a><span>大约926个字, 3分钟5秒读完</span></div></div></div></div><div class="share"><div class="share-btn linkonly"><a class="fa fa-link" onclick="Utils.copyToClipboard(window.location.href)" ref="sidebar"></a></div><div class="share-btn evernote"><a class="fa fa-share" onclick="Anatolo.share.native()" ref="sidebar"></a></div><div class="share-btn weibo"><a class="fab fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="share-btn twitter"><a class="fab fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=%E5%88%86%E4%BA%AB%E6%96%87%E7%AB%A0%EF%BC%9A%0A%0AWeii's%20Blog%20%C2%B7%20claude.md%E8%A7%A3%E5%AF%86%0Ahttps://fengwei7.github.io/2026/05/25/claude-code/%0A"></a></div><div class="share-btn mastodon"><a class="fab fa-mastodon" target="_blank" rel="noopener" href="https://mastodonshare.com/?text=%E5%88%86%E4%BA%AB%E6%96%87%E7%AB%A0%EF%BC%9A%0A%0AWeii's%20Blog%20%C2%B7%20claude.md%E8%A7%A3%E5%AF%86%0Ahttps://fengwei7.github.io/2026/05/25/claude-code/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2026/05/10/apiweb/" title="API-web Tool">下一篇</a></li></ul></div><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script></div></div></div></div></main-outlet><script>(async function(){ if (Anatolo.search == null) await Anatolo.getMsg("search-init"); Anatolo.search.config = {translation:{posts:"文章",pages:"页面",categories:"分类",tags:"标签",untitled:"(无标题)",} }; })()</script><div class="searchbox ins-search modal-cover"><div class="searchbox-container ins-search-container modal-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="Anatolo.search.closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><button class="float-button hide" id="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" type="button" title="回到顶部"><i class="fa fa-angle-up"></i></button><div class="modal-cover" id="success-indicator"><div class="modal-container indicator"><i class="fa fa-check"></i></div></div></body></html>

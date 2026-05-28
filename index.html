@@ -1,0 +1,531 @@
+<!DOCTYPE html><html lang="zh-CN" theme="default"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Weii"><title> · Weii's Blog</title><meta name="description" content=".home-wrapper {
+    position: relative;
+    margin: -40px -20px -20px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: colu"><meta name="keywords" content="Blog,博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon1.webp"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script src="/js_complied/bundle.js"></script><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script><meta name="generator" content="Hexo 8.1.2"></head><body> <main-outlet><div class="page-top animated"><div class="nav"><li><a class="current" href="/">首页</a></li><li><a href="/blog">博客</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/splits">碎片</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="nav_right_btn"><li class="btn-toggle-more"><i class="fa fa-ellipsis"></i></li><li class="btn-search"><a class="fa fa-search" onclick="Anatolo.search.openWindow();"></a></li><li class="btn-toggle-theme"><a class="far fa-sun" onclick="Anatolo.darkLightToggle();"></a></li></div><div class="avatar"><img src="/images/favicon1.webp"></div></div></div><div class="sidebar animated"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/favicon1.webp" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Weii's Blog</a></h3><div class="description"><p>东边日出西边雨，道是无晴却有晴</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/fengwei7"><i class="fab fa-github"></i></a></li><li><a href="mailto:xialuobingo@gmail.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://instagram.com/xialuobingo"><i class="fab fa-instagram"></i></a></li><li><a target="_blank" rel="noopener" href="https://t.me/xialuobingo"><i class="fab fa-telegram"></i></a></li></ul></div></div><div class="footer"><div class="p"><span>全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Weii</span></div><div class="by_farbox"><span>Powered by</span><a href="https://hexo.io/zh-cn/" target="_blank"> Hexo</a><span> &</span><a href="https://github.com/Lhcfl/hexo-theme-anatolo" target="_blank"> Anatolo</a></div><div class="beian"></div></div></div><div class="main animated fadeInDown"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated"><div class="post-title"><h3><a></a></h3></div><div class="post-content"><p><style>
+  .home-wrapper {
+    position: relative;
+    margin: -40px -20px -20px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 100px 20px 60px;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .hero-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    border: 3px solid rgba(200, 200, 200, 0.4);
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .hero-avatar:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 16px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+  }
+
+  .hero .subtitle {
+    font-size: 1.25em;
+    color: #777;
+    margin-bottom: 40px;
+    font-style: italic;
+    min-height: 1.6em;
+  }
+
+  #typing-text {
+    display: inline-block;
+    white-space: nowrap;
+    min-width: 18em;
+    text-align: center;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: #888;
+    margin-left: 3px;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero .nav-cards {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .hero .nav-card {
+    display: block;
+    width: 145px;
+    padding: 26px 18px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .hero .nav-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  .hero .nav-card .icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  .hero .nav-card:hover .icon {
+    transform: scale(1.15);
+  }
+  .hero .nav-card .label {
+    font-size: 0.95em;
+    font-weight: 600;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #555;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+  }
+  .social-links a:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+    font-size: 0.8em;
+    animation: bounce 2.2s infinite;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .scroll-hint:hover {
+    color: #666;
+  }
+  .scroll-hint i {
+    font-size: 1.3em;
+    margin-top: 4px;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+
+  .intro-section {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    width: 100%;
+    padding: 60px 24px 40px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .intro-section h2 {
+    font-size: 1.7em;
+    margin-bottom: 18px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .intro-section p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  /* 深色模式 */
+  html[theme="dark"] .hero h1,
+  html[theme="dark"] .intro-section h2 {
+    background: linear-gradient(135deg, #8b9dc3 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  html[theme="dark"] .hero .subtitle {
+    color: #aaa;
+  }
+  html[theme="dark"] .hero-avatar {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  html[theme="dark"] .hero .nav-card {
+    background: rgba(30, 30, 30, 0.4);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  html[theme="dark"] .hero .nav-card:hover {
+    background: rgba(50, 50, 50, 0.55);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  html[theme="dark"] .social-links a {
+    background: rgba(30, 30, 30, 0.4);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #bbb;
+  }
+  html[theme="dark"] .social-links a:hover {
+    background: rgba(50, 50, 50, 0.6);
+    color: #eee;
+  }
+  html[theme="dark"] .intro-section p {
+    color: #aaa;
+  }
+  html[theme="dark"] .scroll-hint {
+    color: #888;
+  }
+  html[theme="dark"] .scroll-hint:hover {
+    color: #bbb;
+  }
+
+  /* 响应式 */
+  @media (max-width: 600px) {
+    .home-wrapper {
+      margin: -30px -15px -15px;
+      min-height: calc(100vh - 50px);
+    }
+    .hero {
+      padding: 80px 16px 50px;
+    }
+    .hero h1 {
+      font-size: 2.2em;
+    }
+    .hero .subtitle {
+      font-size: 1.05em;
+    }
+    .hero .nav-card {
+      width: 120px;
+      padding: 20px 14px;
+      border-radius: 14px;
+    }
+    .hero-avatar {
+      width: 90px;
+      height: 90px;
+    }
+    .intro-section {
+      padding: 40px 20px 30px;
+    }
+    .intro-section h2 {
+      font-size: 1.4em;
+    }
+  }
+</style>
+
+<div class="home-wrapper">
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="hero">
+    <img class="hero-avatar" src="/images/favicon1.webp" alt="avatar">
+    <h1>你好，我是 Weii</h1>
+    <p class="subtitle" id="typing-text"><span class="typing-cursor"></span></p>
+
+    <div class="nav-cards">
+      <a class="nav-card" href="/blog">
+        <div class="icon">📝</div>
+        <div class="label">博客</div>
+      </a>
+      <a class="nav-card" href="/categories">
+        <div class="icon">📂</div>
+        <div class="label">分类</div>
+      </a>
+      <a class="nav-card" href="/tags">
+        <div class="icon">🏷️</div>
+        <div class="label">标签</div>
+      </a>
+      <a class="nav-card" href="/about">
+        <div class="icon">🙋</div>
+        <div class="label">关于</div>
+      </a>
+    </div>
+
+  </div>
+
+  <a class="scroll-hint" href="#intro" onclick="event.preventDefault();document.getElementById('intro').scrollIntoView({behavior:'smooth'})">
+    <span>向下滚动</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </a>
+</div>
+
+<div class="intro-section" id="intro">
+  <h2>春江花月夜</h2>
+  <p>春江潮水连海平，海上明月共潮生。</p>
+  <p>滟滟随波千万里，何处春江无月明。</p>
+  <p>江流宛转绕芳甸，月照花林皆似霰。</p>
+  <p>空里流霜不觉飞，汀上白沙看不见。</p>
+  <p>江天一色无纤尘，皎皎空中孤月轮。</p>
+  <p>江畔何人初见月，江月何年初照人。</p>
+  <p>人生代代无穷已，江月年年望相似。</p>
+  <p>不知江月待何人，但见长江送流水。</p>
+  <p>白云一片去悠悠，青枫浦上不胜愁。</p>
+  <p>谁家今夜扁舟子，何处相思明月楼。</p>
+  <p>可怜楼上月徘徊，应照离人妆镜台。</p>
+  <p>玉户帘中卷不去，捣衣砧上拂还来。</p>
+  <p>此时相望不相闻，愿逐月华流照君。</p>
+  <p>鸿雁长飞光不度，鱼龙潜跃水成文。</p>
+  <p>昨夜闲潭梦落花，可怜春半不还家。</p>
+  <p>江水流春去欲尽，江潭落月复西斜。</p>
+  <p>斜月沉沉藏海雾，碣石潇湘无限路。</p>
+  <p>不知乘月几人归，落花摇情满江树。</p>
+</div>
+
+<script>
+  (function() {
+    // 打字机效果 - 优化版
+    const texts = ["东边日出西边雨,道是无晴却有晴", "记录编程、技术与生活的点滴"];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingElement = document.getElementById('typing-text');
+  
+    function type() {
+      const currentText = texts[textIndex];
+        
+      if (isDeleting) {
+        charIndex--;
+      } else {
+        charIndex++;
+      }
+        
+      typingElement.innerHTML = currentText.substring(0, charIndex) + '<span class="typing-cursor"></span>';
+  
+      // 根据情况设置不同的速度
+      let typeSpeed;
+        
+      if (!isDeleting && charIndex === currentText.length) {
+        // 打字完成,暂停后开始删除
+        typeSpeed = 2000;
+        setTimeout(() => {
+          isDeleting = true;
+          type();
+        }, typeSpeed);
+        return;
+      } else if (isDeleting && charIndex === 0) {
+        // 删除完成,切换到下一段文字
+        typeSpeed = 500;
+        setTimeout(() => {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          type();
+        }, typeSpeed);
+        return;
+      }
+        
+      // 打字速度:80ms,删除速度:40ms
+      typeSpeed = isDeleting ? 40 : 80;
+      setTimeout(type, typeSpeed);
+    }
+    type();
+
+    // 粒子背景
+    const canvas = document.getElementById('particles-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+    let mouse = { x: null, y: null };
+
+    function resizeCanvas() {
+      const wrapper = canvas.parentElement;
+      canvas.width = wrapper.offsetWidth;
+      canvas.height = wrapper.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    canvas.addEventListener('mousemove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mouseleave', function() {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 2 + 0.8;
+        this.baseX = this.x;
+        this.baseY = this.y;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+        // 鼠标交互
+        if (mouse.x != null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            const force = (120 - dist) / 120;
+            this.vx -= (dx / dist) * force * 0.02;
+            this.vy -= (dy / dist) * force * 0.02;
+          }
+        }
+
+        // 速度限制
+        const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        if (speed > 1.5) {
+          this.vx = (this.vx / speed) * 1.5;
+          this.vy = (this.vy / speed) * 1.5;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(150, 150, 150, 0.35)';
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(Math.floor(canvas.width * canvas.height / 18000), 80);
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+    initParticles();
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(150, 150, 150, ${0.12 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+        // 与鼠标的连线
+        if (mouse.x != null) {
+          const dx = particles[i].x - mouse.x;
+          const dy = particles[i].y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(150, 150, 150, ${0.15 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      animationId = requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationId);
+      } else {
+        animateParticles();
+      }
+    });
+  })();
+</script>
+</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-05-28</span><span>大约1540个字, 5分钟8秒读完</span></div></div></div></div><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script></div></div></div></div></main-outlet><script>(async function(){ if (Anatolo.search == null) await Anatolo.getMsg("search-init"); Anatolo.search.config = {translation:{posts:"文章",pages:"页面",categories:"分类",tags:"标签",untitled:"(无标题)",} }; })()</script><div class="searchbox ins-search modal-cover"><div class="searchbox-container ins-search-container modal-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="Anatolo.search.closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><button class="float-button hide" id="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" type="button" title="回到顶部"><i class="fa fa-angle-up"></i></button><div class="modal-cover" id="success-indicator"><div class="modal-container indicator"><i class="fa fa-check"></i></div></div><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "\\[", right: "\\]", display: true},
+      {left: "\\(", right: "\\)", display: false},
+      {left: "$", right: "$", display: false}
+    ],
+    throwOnError: false
+  });
+});</script></body></html>

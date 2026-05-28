@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-CN" theme="default"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Weii"><title>macOS "应用程序已损坏，无法打开" 的解决方法总结 · Weii's Blog</title><meta name="description" content="问题现象在 macOS 上打开某些应用程序（尤其是从非 App Store 渠道下载的软件）时，系统可能会弹出以下提示：
+
+“应用程序已损坏，无法打开。您应该将它移到废纸篓。”
+“无法打开应用程序，因为无法验证开发者。”
+“应用程序无法打开，因为 Apple 无法检查其是否包含恶意软件。”
+
+
+注意"><meta name="keywords" content="Blog,博客"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta id="site_data_static" data-url="/"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon1.webp"><link rel="stylesheet" href="/js_complied/bundle.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/katex.min.css"><script src="/js_complied/bundle.js"></script><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script><meta name="generator" content="Hexo 8.1.2"></head><body> <main-outlet><div class="page-top animated"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog">博客</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li><a href="/splits">碎片</a></li><li><a href="/about">关于</a></li></div><div class="information"><div class="nav_right_btn"><li class="btn-toggle-more"><i class="fa fa-ellipsis"></i></li><li class="btn-go-back"><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li class="btn-search"><a class="fa fa-search" onclick="Anatolo.search.openWindow();"></a></li><li class="btn-toggle-theme"><a class="far fa-sun" onclick="Anatolo.darkLightToggle();"></a></li></div><div class="avatar"><img src="/images/favicon1.webp"></div></div></div><div class="sidebar animated"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/favicon1.webp" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Weii's Blog</a></h3><div class="description"><p>东边日出西边雨，道是无晴却有晴</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/fengwei7"><i class="fab fa-github"></i></a></li><li><a href="mailto:xialuobingo@gmail.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://instagram.com/xialuobingo"><i class="fab fa-instagram"></i></a></li><li><a target="_blank" rel="noopener" href="https://t.me/xialuobingo"><i class="fab fa-telegram"></i></a></li></ul></div></div><div class="footer"><div class="p"><span>全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Weii</span></div><div class="by_farbox"><span>Powered by</span><a href="https://hexo.io/zh-cn/" target="_blank"> Hexo</a><span> &</span><a href="https://github.com/Lhcfl/hexo-theme-anatolo" target="_blank"> Anatolo</a></div><div class="beian"></div></div></div><div class="main animated fadeInDown"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated"><div class="post-title"><h3><a>macOS &quot;应用程序已损坏，无法打开&quot; 的解决方法总结</a></h3></div><div class="post-content"><p><h2 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h2><p>在 macOS 上打开某些应用程序（尤其是从非 App Store 渠道下载的软件）时，系统可能会弹出以下提示：</p>
+<ul>
+<li><strong>“应用程序已损坏，无法打开。您应该将它移到废纸篓。”</strong></li>
+<li><strong>“无法打开应用程序，因为无法验证开发者。”</strong></li>
+<li><strong>“应用程序无法打开，因为 Apple 无法检查其是否包含恶意软件。”</strong></li>
+</ul>
+<blockquote>
+<p>注意：这类提示<strong>不一定</strong>意味着应用真的被损坏了，更多情况下是因为 macOS 的**门禁（Gatekeeper）**安全机制阻止了未经验证的软件运行。</p>
+</blockquote>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>macOS 通过以下安全机制保护用户：</p>
+<ol>
+<li><strong>Gatekeeper（门禁）</strong>：默认只允许运行来自 App Store 或已认证开发者的应用。</li>
+<li><strong>公证（Notarization）</strong>：Apple 对开发者提交的应用进行自动化安全检查。</li>
+<li><strong>隔离属性（Quarantine）</strong>：从互联网下载的文件会被打上隔离标记 <code>com.apple.quarantine</code>。</li>
+</ol>
+<p>当应用没有通过上述检查时，就会被阻止运行。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="方法一：移除隔离属性（最常用）"><a href="#方法一：移除隔离属性（最常用）" class="headerlink" title="方法一：移除隔离属性（最常用）"></a>方法一：移除隔离属性（最常用）</h3><p>这是最常见也最有效的解决方法，通过 <code>xattr</code> 命令移除应用上的隔离标记：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">移除单个应用的隔离属性</span></span><br><span class="line">sudo xattr -rd com.apple.quarantine /Applications/XXX.app</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">示例：移除 Chrome 的隔离属性</span></span><br><span class="line">sudo xattr -rd com.apple.quarantine /Applications/Google\ Chrome.app</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>-r</code>：递归处理目录</li>
+<li><code>-d</code>：删除指定属性</li>
+<li><code>com.apple.quarantine</code>：隔离属性名</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：不建议直接对 <code>/Applications/</code> 整个目录执行此操作（<code>sudo xattr -dr com.apple.quarantine /Applications/</code>），这会移除所有应用的隔离属性，降低系统安全性。请针对具体应用操作。</p>
+</blockquote>
+<p>执行后，再次双击应用即可正常运行。</p>
+<h3 id="方法二：允许任何来源的应用"><a href="#方法二：允许任何来源的应用" class="headerlink" title="方法二：允许任何来源的应用"></a>方法二：允许任何来源的应用</h3><p>macOS 默认隐藏了”任何来源”选项，但可以通过命令行开启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启<span class="string">&quot;任何来源&quot;</span></span></span><br><span class="line">sudo spctl --master-disable</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">关闭<span class="string">&quot;任何来源&quot;</span>（恢复默认设置）</span></span><br><span class="line">sudo spctl --master-enable</span><br></pre></td></tr></table></figure>
+
+<p>开启后，可以在 <strong>系统设置 → 隐私与安全性 → 安全性</strong> 中看到”任何来源”选项已被选中。</p>
+<blockquote>
+<p><strong>注意</strong>：开启”任何来源”会降低系统安全性，建议在安装完需要的软件后重新关闭。</p>
+</blockquote>
+<h3 id="方法三：临时绕过-Gatekeeper"><a href="#方法三：临时绕过-Gatekeeper" class="headerlink" title="方法三：临时绕过 Gatekeeper"></a>方法三：临时绕过 Gatekeeper</h3><p>如果只是想临时运行某个被阻止的应用，而不想修改全局设置，可以：</p>
+<ol>
+<li><p><strong>右键点击应用</strong> → 选择 <strong>“打开”</strong></p>
+<p>或者</p>
+</li>
+<li><p><strong>按住 Control 键点击应用</strong> → 选择 <strong>“打开”</strong></p>
+<p>这样会弹出一个确认对话框，点击 <strong>“仍要打开”</strong> 即可。</p>
+</li>
+</ol>
+<h3 id="方法四：使用命令行直接运行"><a href="#方法四：使用命令行直接运行" class="headerlink" title="方法四：使用命令行直接运行"></a>方法四：使用命令行直接运行</h3><p>如果以上方法都无效，可以尝试通过命令行直接运行应用的可执行文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入应用包内容</span></span><br><span class="line">cd /Applications/XXX.app/Contents/MacOS/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">直接运行可执行文件</span></span><br><span class="line">./可执行文件名</span><br></pre></td></tr></table></figure>
+
+<p>这种方法会绕过 Gatekeeper，但可能会在终端中显示一些日志信息。</p>
+<h3 id="方法五：签名应用（针对开发者或高级用户）"><a href="#方法五：签名应用（针对开发者或高级用户）" class="headerlink" title="方法五：签名应用（针对开发者或高级用户）"></a>方法五：签名应用（针对开发者或高级用户）</h3><p>如果应用没有有效的开发者签名，可以使用自签名证书进行本地签名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 ad-hoc 签名（不需要开发者账号）</span></span><br><span class="line">sudo codesign --force --deep --sign - /Applications/XXX.app</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>--force</code>：强制重新签名</li>
+<li><code>--deep</code>：递归签名所有嵌套组件</li>
+<li><code>--sign -</code>：使用 ad-hoc 签名（仅本地有效）</li>
+</ul>
+<h3 id="方法六：检查应用完整性"><a href="#方法六：检查应用完整性" class="headerlink" title="方法六：检查应用完整性"></a>方法六：检查应用完整性</h3><p>如果应用确实可能被损坏（如下载不完整），可以验证一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查应用包的完整性</span></span><br><span class="line">spctl -a -vv /Applications/XXX.app</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查签名信息</span></span><br><span class="line">codesign -dvv /Applications/XXX.app</span><br></pre></td></tr></table></figure>
+
+<h2 id="各种报错对应的解决方案速查表"><a href="#各种报错对应的解决方案速查表" class="headerlink" title="各种报错对应的解决方案速查表"></a>各种报错对应的解决方案速查表</h2><table>
+<thead>
+<tr>
+<th>报错信息</th>
+<th>推荐解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用程序已损坏，无法打开</td>
+<td>方法一：移除隔离属性</td>
+</tr>
+<tr>
+<td>无法验证开发者</td>
+<td>方法三：右键&#x2F;Control + 点击打开</td>
+</tr>
+<tr>
+<td>Apple 无法检查其是否包含恶意软件</td>
+<td>方法一 + 方法二</td>
+</tr>
+<tr>
+<td>应用闪退或无响应</td>
+<td>方法四：命令行运行查看日志，或重新下载安装</td>
+</tr>
+</tbody></table>
+<h2 id="安全建议"><a href="#安全建议" class="headerlink" title="安全建议"></a>安全建议</h2><ol>
+<li><strong>尽量从官方渠道下载软件</strong>：优先选择 App Store 或软件官方网站。</li>
+<li><strong>谨慎开启”任何来源”</strong>：安装完成后建议关闭该选项。</li>
+<li><strong>不要随意移除系统级隔离属性</strong>：只对你信任且确认来源可靠的软件进行操作。</li>
+<li><strong>保持系统更新</strong>：macOS 的安全更新会修复已知漏洞。</li>
+<li><strong>使用杀毒软件</strong>：如果需要运行大量未经验证的软件，建议安装 macOS 上的安全软件。</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/guide/mac-help/mh40616/mac">Apple 官方支持：在 Mac 上安全地打开 App</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution">Apple Developer：Notarizing macOS Software Before Distribution</a></li>
+</ul>
+</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-06-30</span><a class="tag" href="/categories/OS/" title="OS">OS </a><i class="fa fa-tag"></i><a class="tag" href="/tags/macOS/" title="macOS">macOS </a><span>大约1299个字, 4分钟19秒读完</span></div></div></div></div><div class="share"><div class="share-btn linkonly"><a class="fa fa-link" onclick="Utils.copyToClipboard(window.location.href)" ref="sidebar"></a></div><div class="share-btn evernote"><a class="fa fa-share" onclick="Anatolo.share.native()" ref="sidebar"></a></div><div class="share-btn weibo"><a class="fab fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="share-btn twitter"><a class="fab fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?text=%E5%88%86%E4%BA%AB%E6%96%87%E7%AB%A0%EF%BC%9A%0A%0AWeii's%20Blog%20%C2%B7%20macOS%20%22%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%22%20%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%0Ahttps://935577.xyz/2022/06/30/MacOS%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/%0A"></a></div><div class="share-btn mastodon"><a class="fab fa-mastodon" target="_blank" rel="noopener" href="https://mastodonshare.com/?text=%E5%88%86%E4%BA%AB%E6%96%87%E7%AB%A0%EF%BC%9A%0A%0AWeii's%20Blog%20%C2%B7%20macOS%20%22%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%22%20%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%0Ahttps://935577.xyz/2022/06/30/MacOS%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%B7%B2%E6%8D%9F%E5%9D%8F%EF%BC%8C%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/%0A"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/03/15/Conda/" title="Conda 常用命令速查">下一篇</a></li></ul></div><script>Anatolo.comment.setConfig({"valine":{"enable":false,"appid":null,"appkey":null,"notify":false,"verify":false,"avatar":"mm","placeholder":"hello, world"},"gitment":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"gitalk":{"enable":false,"owner":"Your GitHub ID","repo":"Repo to store comments","client_id":"Your client ID","client_secret":"Your client secret"},"duoshuo":null,"disqus":null,"gentie":null})</script></div></div></div></div></main-outlet><script>(async function(){ if (Anatolo.search == null) await Anatolo.getMsg("search-init"); Anatolo.search.config = {translation:{posts:"文章",pages:"页面",categories:"分类",tags:"标签",untitled:"(无标题)",} }; })()</script><div class="searchbox ins-search modal-cover"><div class="searchbox-container ins-search-container modal-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="Anatolo.search.closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><button class="float-button hide" id="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" type="button" title="回到顶部"><i class="fa fa-angle-up"></i></button><div class="modal-cover" id="success-indicator"><div class="modal-container indicator"><i class="fa fa-check"></i></div></div><script src="/js/katex.min.js"></script><script src="/js/auto-render.min.js"></script><script>document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "\\[", right: "\\]", display: true},
+      {left: "\\(", right: "\\)", display: false},
+      {left: "$", right: "$", display: false}
+    ],
+    throwOnError: false
+  });
+});</script></body></html>

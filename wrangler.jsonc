@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "blogs",
+  "compatibility_date": "2026-06-04",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+//    "not_found_handling": "single-page-application",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
